@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+        border-top: 1px solid red;
+      border-radius: 20px;
+      background-color: #ffffff;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .search {
+      margin-right: auto;
+      margin-left: 20px;
+    }
+
+    .categories {
+      margin-right: auto;
+      display: flex;
+    }
+
+    .categories select {
+      margin-right: 10px;
+      padding: 5px;
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-actions a{
+      color: #0a0a0a;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .nav2 { 
+      padding: 10px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      background-color: rgb(255, 255, 255);
+      border: 1px solid rgba(0, 0, 0, 0.201);
+    }
+
+    .dropdown {
+      margin-right: 20px;
+    }
+
+    .small_space {
+      margin-right: 50px;
+      padding: 5px;
+      color: #000000;
+      text-decoration: none;
+    }
+
+    .nav2 .small_space {
+      border: 2px solid white;
+    }
+
+    .nav3 {
+        height: 30px;
+        display: flex;
+        padding: 10px;
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        background-color: rgba(85, 84, 84, 0.073);
+        border: 1px solid rgba(0, 0, 0, 0.201);
+    }
+
+    .container{
+        background-color: rgba(73, 133, 236, 0.125);
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+        padding: 40px 120px;
+    }
+
+    .card{
+        
+        background-color: rgb(255, 255, 255);
+        padding: 50px;
+        width: 90%;
+        border-radius: 5px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Added box shadow */
+    }
+
+    .card-nav{
+        display: flex;
+        margin: 10px;
+    }
+
+    .card-nav p{
+        margin-right: 10px;
+    }
+
+    .box{
+        
+        width: 100%;
+        height: 90%;
+        display: flex;
+         
+    }
+
+
+    #box1 img{
+        width: 100%;
+        
+    }
+
+    #box2 {
+        /* background-color: beige; */
+        width: 70%;
+        display: block;
+
+    }
+
+    .box2-inn{
+        
+        padding: 0px;
+        margin-left: 50px;
+    }
+
+    .inner-box{
+        display: block;
+        margin: 10px;
+    }
+
+    .inner-box {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    
+
+    .sidebar {
+        display: flex;
+        overflow: hidden;
+        margin-top: 10px;
+        position: relative;
+        }
+
+        .sidebar img {
+            width: 20px;
+            height: 60px;
+            margin-right: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .card-bot{
+            display: flex;
+        }
+
+        .card-bot img{
+            margin: 10px;
+            width: 50px;
+            height: 70px;
+        }
+
+        .matter{
+
+            font-size: 12px;
+            margin: 5px;
+            margin-top: 20px;
+            color: rgba(28, 27, 27, 0.629);
+            width: 25%;
+            
+        }
+
+        button {
+            align-items: center;
+            justify-content: center;
+            width: 400px;
+            background-color: #e74c3c; /* Red color */
+            color: #fff; /* White text */
+            padding: 13px 20px; /* Adjust padding as needed */
+            border: none;
+            border-radius: 5px; /* Add rounded corners */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        
+        }
+        button span {
+            margin-top: 10px;
+            font-size: 18px; /* Adjust the font size of the text */
+        }
+
+        button::before {
+            content: "\1F4E5"; /* Unicode for download icon */
+            font-size: 30px;
+            margin-right: 8px; /* Add space between icon and text */
+            
+        }
+
+        nav .search input[type="text"] {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+nav .search select {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Styling for Dropdowns */
+nav select {
+  background-color: #555;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Adjust the appearance of the dropdown arrow */
+nav select::after {
+  content: "\25BC"; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* Style the dropdown options */
+nav select option {
+  background-color: #555;
+  color: #fff;
+}
+
+/* Hover effect for dropdown options */
+nav select option:hover {
+  background-color: #333;
+}
+
+/* Style the search button */
+nav .search button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Add hover effect for the search button */
+nav .search button:hover {
+  background-color: #c0392b;
+}
+
+        .con2{
+            margin-top: 50px;
+            display: flex;
+            background-color: white;
+            padding: 0px 150px
+        }
+
+        .box4{
+            margin-top: 50px;
+            background-color: white;
+            padding: 0px 150px
+
+        }
+
+        .box2{
+           
+            width: 40%;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+
+        .box1 {
+            padding: 40px;
+            width: 50%;
+            color: rgba(28, 27, 27, 0.629);
+            justify-content: center;
+            align-items: center;
+          
+        }
+
+        .box2 img{
+            height: 300px;        
+        }
+
+        .box3{
+            width: 50%;
+            margin: 10px;
+            padding: 10px;
+            background-color: #3333331b;
+        }
+
+        .box3 p{
+           color: rebeccapurple;
+           text-align: center;
+        }
+
+        .box3 .card-bot{
+            padding: 20px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            /* background-color: beige; */
+        }
+
+        .box3 .matter{
+            width: 300px;
+           
+        }
+
+
+        .mul-boxes{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .each-box{
+            padding: 20px;
+            margin: 20px;
+            width: 100px;
+            height: 50px;
+            background-color: rebeccapurple;
+        }
+
+        
+        .rec{
+            display: flex;
+            margin-left: 10px;
+        }
+
+        .col{
+            width: 500px;
+        }
+
+        .line {
+            border: none;
+            border-top: 1px solid #0000001d; /* You can change the color as needed */
+            margin: 5px 0; /* Adjust the margin to control the space above and below the line */
+        }
+
+
+        .game{
+            margin-bottom: 30px;
+            
+        }
+        .game1{
+            background-color: rgba(101, 99, 101, 0.052);
+            height: 320px;
+        }
+
+        .game2{
+            height: 400px;
+            background-color: rgba(101, 99, 101, 0.052);
+            display: flex;
+            justify-content:end;
+            padding: 0px;
+
+        }
+
+        .game2 img{
+            width: 100%;
+            height: 100%;
+        }
+
+        .online{
+            color: white;
+            padding: 0px 10px;
+            display: inline-block;
+            background-color: red;
+            margin-bottom: 20px;
+        }
+
+        .bold{
+            margin-bottom: 100px;
+        }
+
+
+        /*  */
+
+    .con-tainer {
+      display: flex;
+      overflow-x: hidden;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 100px;
+      
+    }
+
+
+    .ca-rd {
+      width: 300px;
+      margin-right: 10px;
+      margin-left: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .ca-rd img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .caption {
+      padding: 15px;
+      margin-bottom: 60px;
+    }
+
+    .price {
+      padding: 10px;
+    }
+
+    .nintendo-switch {
+      color: red;
+      text-decoration: underline;
+      display: inline-block;
+      padding: 10px;
+    }
+
+
+    .arrow {
+      cursor: pointer;
+      font-size: 24px;
+      margin-top: 50px;
+    }
+
+    .inst{
+        display: block;
+        color: rgba(28, 27, 27, 0.629);
+    }
+
+
+    .custom-footer {
+      
+      margin: 30px 150px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    
+
+    .footer-column {
+      flex: 1;
+      padding: 0 10px;
+      border-right: 1px solid #000;
+    }
+
+    .footer-column:last-child {
+      border-right: none;
+    }
+
+    .column-heading {
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .column-content {
+      color: #e74c3c;
+      margin-bottom: 5px;
+    }
+
+    .footer-header {
+     padding: 30px 30px;
+     background-color: red;
+      margin: 30px 150px;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-header h2 {
+      margin: 0;
+      color: white;
+    }
+
+    .social-icons {
+      display: flex;
+      margin-left: auto;
+    }
+
+    .social-icons img {
+      width: 20px;
+      margin-left: 10px;
+    }
+
+    
+    .foot{
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .left-content {
+            flex: 1;
+        }
+
+        .right-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .right-content a {
+            color: #fff;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .right-content img {
+            width: 50px; /* Adjust the size as needed */
+            height: auto;
+            margin-right: 20px;
+        }
+         
+
+       
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Nintendo</div>
+
+    <div class="search">
+      <input type="text" placeholder="Search">
+
+      <select>
+        <option value="all">All Categories</option>
+        <option value="category1">Category 1</option>
+        <option value="category2">Category 2</option>
+        <option value="category3">Category 3</option>
+      </select>
+    </div>
+
+    <div class="user-actions">
+      <a href="#">Support</a>
+      <a href="#">Wishlist</a>
+      <a href="#">Cart</a>
+      <a href="#">Login</a>
+    </div>
+  </nav>
+
+  <div class="nav2">
+    <!-- Dropdown 1 -->
+    <select id="dropdown1" class="small_space">
+      <!-- Add options here -->
+      <option value="option1">My Nitendo Store</option>
+      <option value="option2">Option 2</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <select id="dropdown2" class="small_space">
+      <!-- Add options here -->
+      <option value="option1">Games</option>
+      <option value="option2">Option 2</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <select id="dropdown3" class="small_space">
+      <!-- Add options here -->
+      <option value="option1">Nitendo Switch</option>
+      <option value="option2">Option 2</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <a class="small_space user-actions" id="news" href="#">News and Events</a>
+
+    <select id="dropdown4" class="small_space">
+      <!-- Add options here -->
+      <option value="option1">Option 1</option>
+      <option value="option2">Option 2</option>
+      <!-- Add more options as needed -->
+    </select>
+  </div>
+
+  <div class="nav3">
+        <p class="small_space">Free shipping on order $50 or more. <a href="">Restrictions apply</a></p>
+        <p class="small_space">|</p>
+        <p class="small_space"><a href="">Earn My Nintendo Points</a> on digital games </p>
+  </div>
+
+
+  <div class="container">
+
+    <div class="card">
+
+        <div class="card-nav">
+            <p>Store</p>
+            <p>></p>
+            <p>Games</p>
+            <p>></p>
+            <p>Stardew valley</p>
+        </div>
+
+        <div class="box">
+            <div id="box1" class="inner-box">
+              <img src="Stardew-valley.jpg" alt="">
+              <div class="sidebar">
+                <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
+                <img src="Stardew-valley.jpg" alt="">
+                <img src="Stardew-valley.jpg" alt="">
+                <img src="Stardew-valley.jpg" alt="">
+                <img src="Stardew-valley.jpg" alt="">
+                <img src="Stardew-valley.jpg" alt="">
+                <img src="Stardew-valley.jpg" alt="">
+                <div class="next" onclick="plusSlides(1)">&#10095;</div>
+              </div>
+            </div>
+          
+            <div id="box2" class="inner-box ">
+              <!-- Another inner box content if needed -->
+                <div class="box2-inn">
+                    <p>Nintendo Switch</p>
+                    <h3>Stardew Valley</h3>
+                    <h3>$14.99</h3>
+                    <p class="small">Eligible for upto <span>75</span> Gold coins</p>
+                    <button><span>Direct download</span></button>
+                    <p>This item will be sent to yout system automatically after purchase</p>
+                </div>
+            </div>
+          </div>
+
+        <div class="card-bot">
+            <img src="everone.png" alt="">
+            <div class="matter">
+                <small>Simulated Gambling. Use of Alcohol, Fantacy Violence. Use of Tobacco. Mild Blood. Mild Language</small>
+                <br>
+                <hr class="line">
+                <small>User Interact</small>
+                
+            </div>
+        </div>
+    </div>
+  </div>
+
+    <div class="con2">
+        <div class="box1">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi consequatur facere ratione suscipit eos, iste dolorem neque rerum ad tempora aspernatur. Temporibus, illum. Laborum, earum omnis molestiae asperiores perspiciatis ab, quam explicabo dolores quibusdam dolor harum aperiam amet. Aliquid consequuntur expedita, nemo aut eum vero mollitia magni ducimus doloremque? Quasi tempora magni ipsa maxime id praesentium culpa perferendis mollitia deleniti labore reiciendis earum, modi adipisci. Quidem sint quaerat sapiente rem impedit nulla. Sint minima eligendi, error quisquam neque repellat obcaecati, harum cum, cumque deleniti excepturi exercitationem. Ipsum inventore sunt fugiat molestiae architecto laudantium fugit aut impedit? Ipsam delectus repellat laborum.</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae veniam, dicta non sed facilis voluptatum iste provident, deleniti illo commodi rerum, assumenda nihil esse accusamus.</p>
+        </div>
+
+        <div class="box2">
+            <img src="Stardew-valley.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="con2">
+        <div class="box3">
+            <p>ESRB RATING</p>
+            <div class="card-bot">
+                <img src="everone.png" alt="">
+                <div class="matter">
+                    <small>Simulated Gambling. Use of Alcohol, Fantacy Violence. Use of Tobacco. Mild Blood. Mild Language</small>
+                    <br>
+                    <hr class="line">
+                    <small>User Interact</small>
+                    
+                </div>
+            </div>
+        </div>
+    
+        <div class="box3">
+           <p>Supported play modes</p>
+           <div class="mul-boxes">
+                <div class="each-box">
+                    <img src="" alt="">
+                    <p>TV</p>
+                </div>
+                <div class="each-box">
+                    <p>TV</p>
+                </div>
+                <div class="each-box">
+                    <p>TV</p>
+                </div>
+           </div>
+        </div>
+    </div>
+
+
+    <div class="box4">
+        
+            <hr class="line">
+            <div class="rec">
+                
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="rec">
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="rec">
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="rec">
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="rec">
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="rec">
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="rec">
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div>
+
+            <hr class="line">
+            <div class="rec">
+                <div class="col">
+                    <p><strong>Release date</strong></p>
+                </div>
+                <div class="col">
+                    <p>October 5, 2017</p>
+                </div>
+            </div> 
+    </div>
+
+
+    <div class="con2 game">
+        <div class="box1 game1">
+           <div class="online">
+                <h3>ONLINE</h3>
+           </div>
+           <div class="bold">
+                <h3>
+                    Play online, access classical NES and super NES games, and more with Nintendo Switch Online membership.
+                </h3>
+                <small>This game support: <a href="">Online play</a> Save data cloud</small>
+           </div>
+
+           <button>Learn More</button>
+        </div>
+
+        <div class="box1 game2">
+            <img src="joystick.png" alt="">
+        </div>
+    </div>
+
+
+    <div class="con-tainer con2">
+
+        <div class="arrow">&#8592;</div>
+
+        <div class="ca-rd">
+          <img src="pubg.jpg" alt="Card 1">
+          <div class="caption">Caption for Card 1</div>
+          <div class="price">$19.99</div>
+          <div class="nintendo-switch">Nintendo Switch</div>
+           
+        </div>
+    
+        <div class="ca-rd">
+          <img src="pubg.jpg" alt="Card 2">
+          <div class="caption">Caption for Card 2</div>
+          <div class="price">$29.99</div>
+          <div class="nintendo-switch">Nintendo Switch</div>
+           
+        </div>
+        <div class="ca-rd">
+          <img src="pubg.jpg" alt="Card 2">
+          <div class="caption">Caption for Card 2</div>
+          <div class="price">$29.99</div>
+          <div class="nintendo-switch">Nintendo Switch</div>
+           
+        </div>
+        <div class="ca-rd">
+          <img src="pubg.jpg" alt="Card 2">
+          <div class="caption">Caption for Card 2</div>
+          <div class="price">$29.99</div>
+          <div class="nintendo-switch">Nintendo Switch</div>
+           
+        </div>
+        <div class="ca-rd">
+          <img src="pubg.jpg" alt="Card 2">
+          <div class="caption">Caption for Card 2</div>
+          <div class="price">$29.99</div>
+          <div class="nintendo-switch">Nintendo Switch</div>
+           
+        </div>
+    
+        <!-- Add more cards as needed -->
+    
+        <div class="arrow">&#8594;</div>
+      </div>
+
+
+      <div class="con2 inst">
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit corporis nemo sint minus dicta tempora culpa, porro reiciendis voluptas facilis repudiandae soluta at velit blanditiis beatae! Optio hic a vel, eius dolorum possimus sint, aspernatur architecto in porro ea facilis, sit numquam maxime id eum.</p>
+        
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati ratione recusandae consequatur facilis, laudantium voluptatem?</p>
+      </div>
+
+
+      <div class="footer-header">
+        <h2>Nintendo</h2>
+        <div class="social-icons">
+          <img src="facebook.jpg" alt="Facebook">
+          <img src="twitter.jpg" alt="Twitter">
+          <img src="insta.png" alt="Instagram">
+        </div>
+      </div>
+
+      <footer class="custom-footer">
+
+        <div class="footer-column">
+          <div class="column-heading">Adventure</div>
+          <div class="column-content">Quest</div>
+          <div class="column-content">Exploration</div>
+          <div class="column-content">Epic</div>
+        </div>
+    
+        <div class="footer-column">
+          <div class="column-heading">Action</div>
+          <div class="column-content">Battle</div>
+          <div class="column-content">Combat</div>
+          <div class="column-content">Thrilling</div>
+        </div>
+    
+        <div class="footer-column">
+          <div class="column-heading">Strategy</div>
+          <div class="column-content">Tactics</div>
+          <div class="column-content">Conquer</div>
+          <div class="column-content">Intellect</div>
+        </div>
+    
+        <div class="footer-column">
+          <div class="column-heading">Simulation</div>
+          <div class="column-content">Virtual</div>
+          <div class="column-content">Immersive</div>
+          <div class="column-content">Reality</div>
+        </div>
+    
+        <div class="footer-column">
+          <div class="column-heading">Role-Playing</div>
+          <div class="column-content">Character</div>
+          <div class="column-content">Storyline</div>
+          <div class="column-content">Fantasy</div>
+        </div>
+    
+        <div class="footer-column">
+          <div class="column-heading">Multiplayer</div>
+          <div class="column-content">Online</div>
+          <div class="column-content">Cooperative</div>
+          <div class="column-content">Community</div>
+        </div>
+
+      </footer>
+
+
+      <footer class="foot">
+        <div class="left-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <div class="right-content">
+            <a href="#">Contact Us</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Policies</a>
+            <a href="#">Website Uses</a>
+            <img src="india.jpg" alt="Your Logo">
+        </div>
+    </footer>
+
+    
+  <script>
+    let slideIndex = 0; // Start from the first image
+  
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+  
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+  
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementById("box1").getElementsByClassName("sidebar")[0].getElementsByTagName("img");
+  
+      if (n >= slides.length) { slideIndex = 0; } // Reset to the first image if at the end
+      if (n < 0) { slideIndex = slides.length - 1; } // Go to the last image if at the beginning
+  
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+  
+      slides[slideIndex].style.display = "block";
+      slides[slideIndex].style.width = "100px";
+      slides[slideIndex].style.height = "60px";
+    }
+  </script>
+
+</body>
+
+
+</html>
